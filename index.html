@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add('js');</script>
-<title>Skopo. CRM propre, process automatisés, IA utile</title>
-<meta name="description" content="Skopo remet d'aplomb les données et les outils des PME de 20 à 200 salariés : nettoyage CRM, automatisation, IA utile. Diagnostic 5 jours à 1 900 € HT.">
+<title>Nettoyage CRM, automatisation et IA pour PME | Skopo</title>
+<meta name="description" content="On remet d'aplomb les données et les outils des PME de 20 à 200 salariés : CRM nettoyé, process automatisés, IA utile. Diagnostic 5 jours, 1 900 € HT.">
 <link rel="canonical" href="https://skopo.fr/">
 <meta name="robots" content="index, follow">
 
@@ -34,19 +34,41 @@
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://skopo.fr/#organisation",
   "name": "Skopo",
   "url": "https://skopo.fr/",
+  "image": "https://skopo.fr/og-skopo.png",
+  "logo": "https://skopo.fr/apple-touch-icon.png",
   "description": "Nettoyage de CRM, automatisation des process et IA utile pour les PME de 20 à 200 salariés.",
-  "areaServed": "FR",
+  "areaServed": { "@type": "Country", "name": "France" },
+  "knowsLanguage": "fr",
   "serviceType": ["Nettoyage de données CRM", "Automatisation de process", "Intégration d'IA", "Connexion d'outils"],
   "audience": { "@type": "BusinessAudience", "name": "PME de 20 à 200 salariés" },
   "makesOffer": {
     "@type": "Offer",
     "name": "Diagnostic 5 jours",
+    "url": "https://skopo.fr/#offre",
     "price": "1900",
     "priceCurrency": "EUR",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": "1900",
+      "priceCurrency": "EUR",
+      "valueAddedTaxIncluded": false
+    },
     "description": "Cinq jours d'audit des données, des outils et des usages. Plan chiffré et priorisé. Déduit du chantier."
   }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://skopo.fr/#site",
+  "url": "https://skopo.fr/",
+  "name": "Skopo",
+  "inLanguage": "fr-FR",
+  "publisher": { "@id": "https://skopo.fr/#organisation" }
 }
 </script>
 <script type="application/ld+json">
@@ -89,7 +111,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
 <style>
   :root {
     --bg: #efede7;
@@ -995,10 +1019,10 @@
     <div class="container logos-inner" data-reveal>
       <span class="logos-label">Ils nous ont fait confiance</span>
       <div class="logos-row">
-        <img src="logos/club-employes.png" alt="Logo Club Employés, client de Skopo" style="height:32px;">
-        <img src="logos/parella.svg" alt="Logo Parella, client de Skopo" style="height:21px;">
-        <img src="logos/nostrum-care.png" alt="Logo Nostrum Care, client de Skopo" style="height:28px;">
-        <img src="logos/homelior.webp" alt="Logo Homélior, client de Skopo" style="height:38px;">
+        <img src="logos/club-employes.png" alt="Logo Club Employés, client de Skopo" width="84" height="32" loading="lazy" decoding="async" style="height:32px;">
+        <img src="logos/parella.svg" alt="Logo Parella, client de Skopo" width="72" height="21" loading="lazy" decoding="async" style="height:21px;">
+        <img src="logos/nostrum-care.png" alt="Logo Nostrum Care, client de Skopo" width="81" height="28" loading="lazy" decoding="async" style="height:28px;">
+        <img src="logos/homelior.webp" alt="Logo Homélior, client de Skopo" width="98" height="38" loading="lazy" decoding="async" style="height:38px;">
       </div>
     </div>
   </section>

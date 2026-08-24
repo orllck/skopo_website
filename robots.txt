@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Le guide est un aimant à leads : il s'obtient par le formulaire, pas par Google.
+Disallow: /guide-votre-crm-vous-ment.pdf
+
+# Fragment de section mis de côté, jamais destiné à être servi seul.
+Disallow: /_cas-client.html
+
+Sitemap: https://skopo.fr/sitemap.xml
