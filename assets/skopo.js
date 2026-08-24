@@ -207,7 +207,7 @@
     '52': '5 000 à 9 999 salariés', '53': '10 000 salariés et plus'
   };
   var FREE_MAIL = ['gmail.com', 'yahoo.fr', 'yahoo.com', 'hotmail.fr', 'hotmail.com', 'outlook.fr', 'outlook.com', 'live.fr', 'icloud.com', 'me.com', 'free.fr', 'orange.fr', 'wanadoo.fr', 'sfr.fr', 'laposte.net', 'protonmail.com', 'proton.me'];
-  var HIDDEN_FIELDS = ['siren', 'siret_siege', 'nom_legal', 'naf', 'naf_libelle', 'adresse', 'effectif_code', 'effectif_libelle', 'categorie_entreprise', 'date_creation', 'code_postal', 'ville', 'nature_juridique', 'dirigeants', 'nb_etablissements', 'entreprise_verifiee'];
+  var HIDDEN_FIELDS = ['siren', 'siret_siege', 'nom_legal', 'naf', 'naf_libelle', 'adresse', 'effectif_code', 'effectif_libelle', 'categorie_entreprise', 'date_creation', 'code_postal', 'ville', 'nature_juridique', 'nb_etablissements', 'entreprise_verifiee'];
 
   function titleCase(str) {
     return (str || '').toLowerCase().replace(/(^|[\s\-'])([a-zà-ÿ])/g, function (m, p, c) { return p + c.toUpperCase(); });
@@ -306,7 +306,7 @@
     function search(q) {
       if (controller) controller.abort();
       controller = ('AbortController' in window) ? new AbortController() : null;
-      var url = SEARCH_URL + '?q=' + encodeURIComponent(q) + '&per_page=6&etat_administratif=A&minimal=true&include=siege,dirigeants';
+      var url = SEARCH_URL + '?q=' + encodeURIComponent(q) + '&per_page=6&etat_administratif=A&minimal=true&include=siege';
       fetch(url, controller ? { signal: controller.signal } : {})
         .then(function (res) { return res.ok ? res.json() : { results: [] }; })
         .then(function (data) { if (q !== lastQuery) return; results = (data && data.results) || []; render(); })
@@ -334,10 +334,6 @@
       hidden.ville.value = titleCase(s.libelle_commune || '');
       hidden.nature_juridique.value = r.nature_juridique || '';
       hidden.nb_etablissements.value = r.nombre_etablissements_ouverts != null ? String(r.nombre_etablissements_ouverts) : '';
-      hidden.dirigeants.value = (r.dirigeants || []).map(function (d) {
-        var n = d.type_dirigeant === 'personne morale' ? (d.denomination || '') : [d.prenoms, d.nom].filter(Boolean).join(' ');
-        return n ? titleCase(n) + (d.qualite ? ' (' + d.qualite + ')' : '') : '';
-      }).filter(Boolean).slice(0, 5).join(' ; ');
       hidden.entreprise_verifiee.value = 'oui';
       pickName.textContent = titleCase(r.nom_complet);
       var pa = companyAddr(r); pickAddr.textContent = pa; pickAddr.hidden = !pa;

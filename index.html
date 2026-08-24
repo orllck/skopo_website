@@ -109,11 +109,9 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-600-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-400-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <link rel="stylesheet" href="/assets/skopo.css">
 </head>
 <body>
@@ -458,7 +456,7 @@
         </div>
 
         <button type="submit" class="btn guide-submit" id="g-submit">Recevoir le guide</button>
-        <p class="guide-consent">En téléchargant le guide, vous acceptez qu'on vous écrive à son sujet. Pas de newsletter, désinscription en un clic.</p>
+        <p class="guide-consent">En téléchargeant le guide, vous acceptez qu'on vous écrive à son sujet. Pas de newsletter, désinscription en un clic. Vos données servent à vous répondre, rien d'autre&nbsp;: <a href="/confidentialite/">comment on les traite</a>.</p>
         <p class="guide-error" id="g-error" hidden role="alert"></p>
       </form>
 
@@ -565,6 +563,7 @@
           <textarea id="c-message" name="message" placeholder="En deux lignes suffit"></textarea>
         </div>
         <button type="submit" class="btn-outline" id="c-submit">Envoyer</button>
+        <p class="guide-consent">Vos coordonnées servent uniquement à vous répondre. On complète la fiche publique de votre entreprise pour préparer l'échange&nbsp;: <a href="/confidentialite/">le détail ici</a>.</p>
         <p class="guide-error" id="c-error" hidden role="alert"></p>
       </form>
       <div class="guide-done" id="contact-done" hidden>
@@ -584,7 +583,7 @@
         <span class="brand-dot"></span>
       </div>
       <span class="footer-tag">Data · Automatisation · IA</span>
-      <span class="footer-links"><a href="#">Mentions légales</a> · <a href="#">LinkedIn</a></span>
+      <span class="footer-links"><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="#">LinkedIn</a></span>
     </div>
   </footer>
 
