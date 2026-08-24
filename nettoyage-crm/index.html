@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
+<title>Nettoyage et fiabilisation de CRM pour PME | Skopo</title>
+<meta name="description" content="Dédoublonnage, champs qui veulent dire quelque chose, règles de saisie tenables : comment on remet d'aplomb le CRM d'une PME, et comment il le reste.">
+<link rel="canonical" href="https://skopo.fr/nettoyage-crm/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Skopo">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://skopo.fr/nettoyage-crm/">
+<meta property="og:title" content="Nettoyer un CRM, ce n'est pas supprimer des doublons.">
+<meta property="og:description" content="C'est refaire en sorte qu'un chiffre affiché soit un chiffre vrai. Ce qu'on fait, dans quel ordre, et pourquoi ça tient.">
+<meta property="og:image" content="https://skopo.fr/og-skopo-offre.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nettoyage et fiabilisation de CRM pour PME">
+<meta name="twitter:description" content="Dédoublonnage, modèle de données, règles de saisie tenables. Et le volet adoption, sans lequel tout se resalit.">
+<meta name="twitter:image" content="https://skopo.fr/og-skopo-offre.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#efede7">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://skopo.fr/nettoyage-crm/#service",
+  "name": "Nettoyage et fiabilisation de CRM",
+  "url": "https://skopo.fr/nettoyage-crm/",
+  "serviceType": "Nettoyage de données CRM",
+  "description": "Dédoublonnage, normalisation, refonte du modèle de données et règles de saisie pérennes pour les CRM de PME de 20 à 200 salariés, avec un volet adoption pour que la base reste propre.",
+  "provider": { "@id": "https://skopo.fr/#organisation" },
+  "areaServed": { "@type": "Country", "name": "France" },
+  "audience": { "@type": "BusinessAudience", "name": "PME de 20 à 200 salariés" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://skopo.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Nettoyage de CRM", "item": "https://skopo.fr/nettoyage-crm/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien de temps prend le nettoyage d'un CRM ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le diagnostic prend cinq jours. Le chantier lui-même va de quatre à six semaines pour une base de PME, selon le nombre d'objets, l'ancienneté de l'historique et le nombre d'outils connectés. Le diagnostic sert précisément à donner cette fourchette avant que vous ne vous engagiez." }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il arrêter d'utiliser le CRM pendant le chantier ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non. Les équipes continuent de travailler normalement. Les traitements lourds passent sur une copie, sont validés, puis appliqués par lots. Vous gardez une sauvegarde et la possibilité de revenir en arrière à chaque étape." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que devient l'historique commercial ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il est conservé. Fusionner deux fiches en doublon ne supprime ni les échanges, ni les devis, ni les affaires rattachées : tout est reporté sur la fiche conservée. Rien n'est supprimé sans une règle écrite et validée avec vous." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment savoir si le nettoyage a servi à quelque chose ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les indicateurs sont mesurés avant et après : taux de doublons, taux de remplissage des champs qui servent au pilotage, écart entre le pipeline affiché et le pipeline réel. Sans mesure de départ, personne ne peut prouver que le travail a servi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi un CRM se resalit-il après avoir été nettoyé ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Parce que la saleté vient des usages, pas de la base. Si les règles de saisie ne correspondent pas au métier des équipes, elles seront contournées et la base se dégradera en quelques mois. C'est pour cette raison que le volet adoption fait partie du chantier et non d'une option." }
+    }
+  ]
+}
+</script>
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-600-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-tight-400-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/skopo.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="/" class="brand" aria-label="Skopo, accueil">
+        <span class="brand-name">Skopo</span>
+        <span class="brand-dot"></span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="/#offre">Offre</a>
+        <a href="/#methode">Méthode</a>
+        <a href="/#duo">Le duo</a>
+        <a href="/#guide">Le guide</a>
+        <a href="/#faq">FAQ</a>
+      </nav>
+      <a href="#rdv" class="nav-cta">Réserver un appel</a>
+    </div>
+  </header>
+
+  <div class="container doc-head">
+    <nav class="fil" aria-label="Fil d'Ariane">
+      <a href="/">Accueil</a> <span aria-hidden="true">›</span> <span>Nettoyage de CRM</span>
+    </nav>
+    <h1>Nettoyer un CRM, ce n'est pas supprimer des doublons.</h1>
+    <p class="doc-chapo">C'est faire en sorte qu'un chiffre affiché soit un chiffre vrai. Et qu'il le reste six mois plus tard, quand plus personne ne surveille.</p>
+  </div>
+
+  <section class="container probleme">
+    <div class="probleme-grid">
+      <div class="probleme-head" data-reveal>
+        <div class="kicker">Les signes</div>
+        <h2>Vous savez déjà que la base est sale. La question, c'est à quel point.</h2>
+        <p class="probleme-lead">Une base de CRM ne se dégrade pas d'un coup. Elle se dégrade fiche par fiche, import après import, jusqu'au jour où plus personne ne se sert des chiffres pour décider. Voilà les symptômes qu'on retrouve dans presque toutes les PME.</p>
+      </div>
+      <div class="pain-list">
+        <div class="pain" data-reveal><span class="dot"></span><span>La même entreprise existe en trois fiches, avec trois interlocuteurs différents.</span></div>
+        <div class="pain" data-reveal style="--d:.07s"><span class="dot"></span><span>Le pipeline affiche des affaires que tout le monde sait mortes depuis des mois.</span></div>
+        <div class="pain" data-reveal style="--d:.14s"><span class="dot"></span><span>La moitié des contacts ont changé de poste, personne ne le sait.</span></div>
+        <div class="pain" data-reveal style="--d:.21s"><span class="dot"></span><span>Les champs obligatoires sont remplis avec « à compléter » ou un point.</span></div>
+        <div class="pain" data-reveal style="--d:.28s"><span class="dot"></span><span>Deux commerciaux travaillent le même compte sans le savoir.</span></div>
+        <div class="pain" data-reveal style="--d:.35s"><span class="dot"></span><span>Avant chaque comité, quelqu'un refait les chiffres à la main dans Excel.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="offre">
+    <div class="container offre-inner">
+      <div class="section-head" data-reveal>
+        <div class="kicker">Le chantier</div>
+        <h2>Ce qu'on fait concrètement, dans cet ordre.</h2>
+        <p>Le nettoyage n'est pas une passe d'outil automatique. C'est une suite de décisions sur ce qui compte dans votre métier, prises avec vous, puis appliquées et documentées.</p>
+      </div>
+      <div class="cards">
+        <div class="card" data-reveal>
+          <div class="card-tag"><span class="dot"></span><span class="card-num">01</span></div>
+          <h3>Dédoublonner et normaliser</h3>
+          <p>Identification des doublons sur des règles écrites, fusion sans perte d'historique, harmonisation des formats de raison sociale, d'adresse et de téléphone.</p>
+          <div class="card-points">
+            <span>Rapprochement sur le SIREN quand il existe</span>
+            <span>Fusion validée par lots, jamais en aveugle</span>
+            <span>Sauvegarde et retour arrière à chaque étape</span>
+          </div>
+          <div class="card-result">Une entreprise, une fiche, un propriétaire.</div>
+        </div>
+        <div class="card" data-reveal style="--d:.1s">
+          <div class="card-tag"><span class="dot"></span><span class="card-num">02</span></div>
+          <h3>Reprendre le modèle de données</h3>
+          <p>Les champs qui ne servent à personne partent. Ceux qui servent au pilotage deviennent obligatoires, avec des valeurs contraintes plutôt que du texte libre.</p>
+          <div class="card-points">
+            <span>Étapes de pipeline qui correspondent au cycle réel</span>
+            <span>Cycle de vie des contacts et des comptes</span>
+            <span>Listes fermées plutôt que saisie libre</span>
+          </div>
+          <div class="card-result">Un champ rempli veut dire quelque chose.</div>
+        </div>
+        <div class="card" data-reveal style="--d:.2s">
+          <div class="card-tag"><span class="dot"></span><span class="card-num">03</span></div>
+          <h3>Empêcher que ça se resalisse</h3>
+          <p>Contrôles à la saisie, détection des doublons à la création, alertes sur les affaires qui dorment, et un audit récurrent de la qualité de la base.</p>
+          <div class="card-points">
+            <span>Règles de saisie construites avec les équipes</span>
+            <span>Tableau de bord de qualité des données</span>
+            <span>Documentation écrite, reprise possible en interne</span>
+          </div>
+          <div class="card-result">La base reste propre sans surveillance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container doc" aria-labelledby="titre-adoption">
+    <h2 id="titre-adoption">Pourquoi un nettoyage seul ne tient jamais six mois</h2>
+    <p>
+      C'est le point sur lequel nous sommes le plus insistants, parce que c'est celui qui
+      détermine si vous aurez payé pour un résultat ou pour un sursis.
+    </p>
+    <p>
+      Une base sale n'est pas une cause, c'est une conséquence. Elle est sale parce que la
+      saisie coûte du temps à des gens qui n'en tirent aucun bénéfice, parce que les champs
+      obligatoires ont été décidés sans eux, parce que le reporting sert à les contrôler plutôt
+      qu'à les aider. Tant que ces trois choses restent vraies, vous pouvez nettoyer la base
+      tous les ans&nbsp;: elle se redégradera à la même vitesse.
+    </p>
+    <p>
+      <strong>La première cause d'échec d'un projet CRM en PME n'est pas technique, c'est
+      l'adoption.</strong> C'est pour ça qu'on intervient à deux&nbsp;: un profil technique qui
+      reprend les données et les automatisations, un profil conduite du changement qui mène les
+      entretiens utilisateurs, adapte les règles au métier de chacun et forme les équipes
+      pendant le chantier, pas après.
+    </p>
+    <p>
+      Concrètement, chaque règle de saisie qu'on met en place a été discutée avec la personne
+      qui devra l'appliquer. Une règle qu'un commercial juge absurde sera contournée, et une
+      règle contournée produit des données fausses plus vite que pas de règle du tout.
+    </p>
+    <p><a href="/#duo">Comment on travaille à deux, en détail</a>.</p>
+  </section>
+
+  <section id="methode" class="container methode-inner">
+    <div class="section-head" data-reveal>
+      <div class="kicker">Par où on commence</div>
+      <h2>Cinq jours pour savoir ce qu'il y a vraiment dans la base.</h2>
+      <p>On ne chiffre pas un nettoyage sans avoir regardé les données. Personne de sérieux ne peut le faire, et un devis donné sans mesure est un devis qui dérapera.</p>
+    </div>
+    <div class="steps">
+      <div class="step is-active" data-reveal>
+        <div class="step-meta">
+          <span class="step-dots"><span class="on"></span><span class="lvl-2"></span><span class="lvl-3"></span></span>
+          <span class="step-duree">5 jours</span>
+        </div>
+        <h3>Diagnostic</h3>
+        <p>Audit chiffré de la base&nbsp;: taux de doublons, champs vides, objets abandonnés, écarts entre les outils. Quatre à six entretiens avec les utilisateurs réels. Vous repartez avec un plan chiffré et priorisé, utilisable même si vous vous arrêtez là.</p>
+        <div class="step-prix">1 900 € HT, déduit du chantier</div>
+      </div>
+      <div class="step" data-reveal style="--d:.1s">
+        <div class="step-meta">
+          <span class="step-dots"><span class="off-strong"></span><span class="on size-9 lvl-2"></span><span class="lvl-3"></span></span>
+          <span class="step-duree">4 à 6 semaines</span>
+        </div>
+        <h3>Chantier</h3>
+        <p>Nettoyage, refonte du modèle, règles de saisie, tableaux de bord, formation des équipes au fur et à mesure. Les équipes continuent de travailler pendant toute la durée.</p>
+        <div class="step-prix">Chiffré au diagnostic, jamais avant</div>
+      </div>
+      <div class="step" data-reveal style="--d:.2s">
+        <div class="step-meta">
+          <span class="step-dots"><span class="off-strong"></span><span class="off-strong lvl-2"></span><span class="on size-10 lvl-3"></span></span>
+          <span class="step-duree">Mensuel</span>
+        </div>
+        <h3>Run</h3>
+        <p>Audit mensuel de la qualité des données, correction des dérives avant qu'elles ne s'installent, formation des nouveaux arrivants. Optionnel, mais c'est ce qui fait la différence à un an.</p>
+        <div class="step-prix">Forfait mensuel, engagement 6 mois</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pour-qui" class="container pourqui">
+    <div class="section-head" data-reveal>
+      <div class="kicker">Pour qui</div>
+      <h2>Ce chantier n'est pas pour tout le monde.</h2>
+      <p>Une offre qui ne dit pas non n'est pas une offre. Voilà où on est utiles sur ce sujet précis, et où on ne l'est pas.</p>
+    </div>
+    <div class="pourqui-grid">
+      <div class="pourqui-col" data-reveal>
+        <h3>C'est pour vous si</h3>
+        <div class="pourqui-item"><span class="pourqui-mark">+</span><span>Vous avez déjà un CRM en place depuis au moins deux ans, avec un historique conséquent.</span></div>
+        <div class="pourqui-item"><span class="pourqui-mark">+</span><span>Vous ne pouvez plus présenter vos chiffres de pipeline sans les retravailler à la main.</span></div>
+        <div class="pourqui-item"><span class="pourqui-mark">+</span><span>Personne en interne n'a le temps ni le mandat de reprendre la base.</span></div>
+        <div class="pourqui-item"><span class="pourqui-mark">+</span><span>Vous voulez brancher de l'IA ou de l'automatisation, et vous savez que les données ne suivront pas.</span></div>
+      </div>
+      <div class="pourqui-col pourqui-non" data-reveal style="--d:.1s">
+        <h3>Ce n'est pas pour vous si</h3>
+        <div class="pourqui-item"><span class="pourqui-mark">−</span><span>Vous n'avez pas encore de CRM. L'implémentation depuis zéro est un autre métier, on vous oriente vers un intégrateur.</span></div>
+        <div class="pourqui-item"><span class="pourqui-mark">−</span><span>Vous cherchez un outil qui dédoublonne tout seul. Il en existe, ils ne règlent pas le problème de fond.</span></div>
+        <div class="pourqui-item"><span class="pourqui-mark">−</span><span>Vous cherchez un renfort en régie, facturé à la journée.</span></div>
+        <div class="pourqui-note">Dans ces cas-là, on vous le dit dès l'appel de 30 minutes, et on vous indique vers qui vous tourner.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="container faq">
+    <div class="faq-grid">
+      <div class="faq-head" data-reveal>
+        <div class="kicker">FAQ</div>
+        <h2>Ce qu'on nous demande sur le nettoyage.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item" data-reveal>
+          <h3>Combien de temps prend le nettoyage d'un CRM&nbsp;?</h3>
+          <p>Le diagnostic prend cinq jours. Le chantier lui-même va de quatre à six semaines pour une base de PME, selon le nombre d'objets, l'ancienneté de l'historique et le nombre d'outils connectés. Le diagnostic sert précisément à donner cette fourchette avant que vous ne vous engagiez.</p>
+        </div>
+        <div class="faq-item" data-reveal style="--d:.06s">
+          <h3>Faut-il arrêter d'utiliser le CRM pendant le chantier&nbsp;?</h3>
+          <p>Non. Les équipes continuent de travailler normalement. Les traitements lourds passent sur une copie, sont validés, puis appliqués par lots. Vous gardez une sauvegarde et la possibilité de revenir en arrière à chaque étape.</p>
+        </div>
+        <div class="faq-item" data-reveal style="--d:.12s">
+          <h3>Que devient l'historique commercial&nbsp;?</h3>
+          <p>Il est conservé. Fusionner deux fiches en doublon ne supprime ni les échanges, ni les devis, ni les affaires rattachées&nbsp;: tout est reporté sur la fiche conservée. Rien n'est supprimé sans une règle écrite et validée avec vous.</p>
+        </div>
+        <div class="faq-item" data-reveal style="--d:.18s">
+          <h3>Comment savoir si le nettoyage a servi à quelque chose&nbsp;?</h3>
+          <p>Les indicateurs sont mesurés avant et après&nbsp;: taux de doublons, taux de remplissage des champs qui servent au pilotage, écart entre le pipeline affiché et le pipeline réel. Sans mesure de départ, personne ne peut prouver que le travail a servi.</p>
+        </div>
+        <div class="faq-item" data-reveal style="--d:.24s">
+          <h3>Pourquoi un CRM se resalit-il après avoir été nettoyé&nbsp;?</h3>
+          <p>Parce que la saleté vient des usages, pas de la base. Si les règles de saisie ne correspondent pas au métier des équipes, elles seront contournées et la base se dégradera en quelques mois. C'est pour cette raison que le volet adoption fait partie du chantier et non d'une option.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container doc" aria-labelledby="titre-suite">
+    <h2 id="titre-suite">Une fois la base propre</h2>
+    <p>
+      Le nettoyage est le premier des trois chantiers, et il n'a d'intérêt que parce qu'il
+      ouvre les deux autres. Sur des données fiables, on peut enfin connecter les outils entre
+      eux pour supprimer la ressaisie, puis brancher quelques usages d'IA qui tiennent la route.
+      Dans l'autre sens, ça ne marche pas&nbsp;: une automatisation qui tourne sur des doublons
+      les propage, et un modèle d'IA nourri de données fausses produit des réponses fausses,
+      avec l'assurance en plus.
+    </p>
+    <p><a href="/#offre">Les trois chantiers, et pourquoi cet ordre</a>.</p>
+  </section>
+
+  <section id="rdv" class="rdv">
+    <div class="container rdv-inner">
+      <div class="rdv-content" data-reveal>
+        <div class="kicker">Parlons-en</div>
+        <h2>Trente minutes pour savoir si ça vaut le coup.</h2>
+        <p class="rdv-lead">Vous décrivez l'état de votre base, on vous dit franchement si on peut vous aider, et sinon vers qui vous tourner.</p>
+        <div class="rdv-cta-row">
+          <!-- TODO: remplacer par le lien Calendly réel -->
+          <a href="#" class="btn">Choisir un créneau</a>
+          <span class="rdv-cta-note">Calendly, 30 min en visio</span>
+        </div>
+      </div>
+      <div class="rdv-side" data-reveal style="--d:.12s">
+      <form class="rdv-form" id="contact-form" method="post" action="#" novalidate>
+        <span class="rdv-form-intro">Ou laissez un message&nbsp;:</span>
+        <div class="field">
+          <label for="c-nom">Nom</label>
+          <input id="c-nom" name="nom" type="text" placeholder="Prénom Nom" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="c-email">Email professionnel</label>
+          <input id="c-email" name="email" type="email" placeholder="vous@entreprise.fr" autocomplete="email" inputmode="email" required>
+        </div>
+        <div class="field field--company" data-company-search>
+          <label for="c-entreprise">Votre entreprise</label>
+          <input id="c-entreprise" name="entreprise" type="text" placeholder="Commencez à taper, on la retrouve" autocomplete="organization" required aria-autocomplete="list" aria-expanded="false">
+        </div>
+        <div class="field">
+          <label for="c-message">L'état de votre base, en deux lignes</label>
+          <textarea id="c-message" name="message" placeholder="Quel CRM, depuis quand, ce qui coince"></textarea>
+        </div>
+        <button type="submit" class="btn-outline" id="c-submit">Envoyer</button>
+        <p class="guide-consent">Vos coordonnées servent uniquement à vous répondre. On complète la fiche publique de votre entreprise pour préparer l'échange&nbsp;: <a href="/confidentialite/">le détail ici</a>.</p>
+        <p class="guide-error" id="c-error" hidden role="alert"></p>
+      </form>
+      <div class="guide-done" id="contact-done" hidden>
+        <div class="kicker">Bien reçu</div>
+        <h3>On vous répond sous 48 h.</h3>
+        <p>Avec une réponse franche&nbsp;: si c'est un sujet pour nous, on vous propose un créneau&nbsp;; sinon on vous dit vers qui vous tourner.</p>
+        <p class="guide-done-note">En attendant, <a href="/#guide">le guide</a> et sa grille d'auto-diagnostic vous donneront déjà un ordre de grandeur.</p>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <span class="brand-name">Skopo</span>
+        <span class="brand-dot"></span>
+      </div>
+      <span class="footer-tag">Data · Automatisation · IA</span>
+      <span class="footer-links"><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="#">LinkedIn</a></span>
+    </div>
+  </footer>
+
+<script src="/assets/skopo.js" defer></script>
+</body>
+</html>

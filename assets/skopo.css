@@ -926,3 +926,49 @@
     .doc { padding-top: 32px; padding-bottom: 64px; }
     .doc-fiche > div { grid-template-columns: 1fr; gap: 4px; }
   }
+
+  /* ---------- Pages de contenu (fil d'Ariane, chapô, bloc de texte intercalé) ---------- */
+  .fil { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+  .fil a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line-md); }
+  .fil a:hover { color: var(--accent); border-bottom-color: var(--accent-light); }
+  .fil span[aria-hidden] { padding: 0 6px; color: var(--faint); }
+
+  .doc-chapo {
+    max-width: 680px;
+    margin: 18px 0 0;
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: var(--text-3);
+  }
+
+  /* Bloc de texte long inséré entre deux sections d'une page de contenu :
+     même colonne de lecture que les pages document, respiration réduite. */
+  section.doc { padding-top: 84px; padding-bottom: 84px; }
+  section.doc h2 {
+    font-size: clamp(23px, 2.4vw, 30px);
+    letter-spacing: -.015em;
+    border-top: 0;
+    padding-top: 0;
+    margin: 0 0 18px;
+  }
+  section.doc p { font-size: 16px; }
+
+  @media (max-width: 860px) {
+    section.doc { padding-top: 56px; padding-bottom: 56px; }
+  }
+
+  /* Lien depuis une carte d'offre vers sa page dédiée */
+  .card-lien {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .02em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-light);
+    padding-bottom: 2px;
+    transition: color .25s ease, border-color .25s ease;
+  }
+  .card-lien:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+  .card-lien::after { content: ' →'; }
