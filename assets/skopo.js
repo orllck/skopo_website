@@ -195,8 +195,8 @@
 (function () {
   /* Webhooks qui reçoivent les leads en JSON (POST). Vides = rien n'est transmis, le lead est
      seulement loggé en console, et le visiteur n'est jamais bloqué. Voir ebook/README.md. */
-  var GUIDE_ENDPOINT = '';
-  var CONTACT_ENDPOINT = '';
+  var GUIDE_ENDPOINT = ''   /* À REMPLIR : webhook n8n qui reçoit les demandes de guide */;
+  var CONTACT_ENDPOINT = '' /* À REMPLIR : webhook n8n qui reçoit les prises de contact */;
   var SEARCH_URL = 'https://recherche-entreprises.api.gouv.fr/search';
 
   var EFFECTIFS = {

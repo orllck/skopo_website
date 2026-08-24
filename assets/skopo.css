@@ -972,3 +972,16 @@
   }
   .card-lien:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
   .card-lien::after { content: ' →'; }
+
+  /* Lien dont l'URL reste à fournir. Le pointillé et l'infobulle rendent
+     l'oubli impossible en relecture ; à supprimer une fois les URL en place. */
+  .a-remplir { outline: 1px dashed var(--accent-light); outline-offset: 3px; position: relative; cursor: help; }
+  .a-remplir::after {
+    content: 'à remplir : ' attr(data-todo);
+    position: absolute; left: 0; top: calc(100% + 6px);
+    font-family: var(--mono); font-size: 11px; white-space: nowrap;
+    color: var(--accent-deep); background: var(--cream);
+    border: 1px solid var(--accent-light); border-radius: 3px;
+    padding: 3px 7px; opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 5;
+  }
+  .a-remplir:hover::after { opacity: 1; }
