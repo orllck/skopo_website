@@ -197,6 +197,7 @@
      seulement loggé en console, et le visiteur n'est jamais bloqué. Voir ebook/README.md. */
   var GUIDE_ENDPOINT = ''   /* À REMPLIR : webhook n8n qui reçoit les demandes de guide */;
   var CONTACT_ENDPOINT = '' /* À REMPLIR : webhook n8n qui reçoit les prises de contact */;
+  var PREDIAG_ENDPOINT = '' /* À REMPLIR : webhook n8n qui reçoit les pré-diagnostics (fiche + score) */;
   var SEARCH_URL = 'https://recherche-entreprises.api.gouv.fr/search';
 
   var EFFECTIFS = {
@@ -207,7 +208,19 @@
     '52': '5 000 à 9 999 salariés', '53': '10 000 salariés et plus'
   };
   var FREE_MAIL = ['gmail.com', 'yahoo.fr', 'yahoo.com', 'hotmail.fr', 'hotmail.com', 'outlook.fr', 'outlook.com', 'live.fr', 'icloud.com', 'me.com', 'free.fr', 'orange.fr', 'wanadoo.fr', 'sfr.fr', 'laposte.net', 'protonmail.com', 'proton.me'];
-  var HIDDEN_FIELDS = ['siren', 'siret_siege', 'nom_legal', 'naf', 'naf_libelle', 'adresse', 'effectif_code', 'effectif_libelle', 'categorie_entreprise', 'date_creation', 'code_postal', 'ville', 'nature_juridique', 'nb_etablissements', 'entreprise_verifiee'];
+  var HIDDEN_FIELDS = ['siren', 'siret_siege', 'nom_legal', 'naf', 'naf_libelle', 'adresse', 'effectif_code', 'effectif_libelle', 'categorie_entreprise', 'date_creation', 'code_postal', 'ville', 'nature_juridique', 'nb_etablissements', 'ca_api', 'ca_annee', 'entreprise_verifiee'];
+
+  /* Dernier chiffre d'affaires connu dans le bloc finances de l'API (comptes déposés).
+     Souvent absent, ou à zéro pour les holdings : on propose, on n'impose jamais. */
+  function latestCA(r) {
+    var fin = (r && r.finances) || {};
+    var best = { ca: 0, annee: '' };
+    Object.keys(fin).forEach(function (y) {
+      var ca = Number((fin[y] || {}).ca || 0);
+      if (ca > 0 && (!best.annee || y > best.annee)) best = { ca: ca, annee: y };
+    });
+    return best;
+  }
 
   function titleCase(str) {
     return (str || '').toLowerCase().replace(/(^|[\s\-'])([a-zà-ÿ])/g, function (m, p, c) { return p + c.toUpperCase(); });
@@ -306,7 +319,7 @@
     function search(q) {
       if (controller) controller.abort();
       controller = ('AbortController' in window) ? new AbortController() : null;
-      var url = SEARCH_URL + '?q=' + encodeURIComponent(q) + '&per_page=6&etat_administratif=A&minimal=true&include=siege';
+      var url = SEARCH_URL + '?q=' + encodeURIComponent(q) + '&per_page=6&etat_administratif=A&minimal=true&include=siege,finances';
       fetch(url, controller ? { signal: controller.signal } : {})
         .then(function (res) { return res.ok ? res.json() : { results: [] }; })
         .then(function (data) { if (q !== lastQuery) return; results = (data && data.results) || []; render(); })
@@ -315,6 +328,7 @@
     function clearPick() {
       pick.hidden = true;
       HIDDEN_FIELDS.forEach(function (k) { hidden[k].value = k === 'entreprise_verifiee' ? 'non' : ''; });
+      try { form.dispatchEvent(new CustomEvent('company:cleared')); } catch (e) {}
     }
     function choose(i) {
       var r = results[i]; if (!r) return;
@@ -334,7 +348,11 @@
       hidden.ville.value = titleCase(s.libelle_commune || '');
       hidden.nature_juridique.value = r.nature_juridique || '';
       hidden.nb_etablissements.value = r.nombre_etablissements_ouverts != null ? String(r.nombre_etablissements_ouverts) : '';
+      var ca = latestCA(r);
+      hidden.ca_api.value = ca.ca ? String(ca.ca) : '';
+      hidden.ca_annee.value = ca.annee;
       hidden.entreprise_verifiee.value = 'oui';
+      try { form.dispatchEvent(new CustomEvent('company:selected', { detail: r })); } catch (e) {}
       pickName.textContent = titleCase(r.nom_complet);
       var pa = companyAddr(r); pickAddr.textContent = pa; pickAddr.hidden = !pa;
       pickMeta.textContent = companySector(r);
@@ -419,7 +437,7 @@
       if (!document.getElementById('g-fonction').value) return fail('Choisissez votre rôle, ça nous aide à vous répondre juste.', document.getElementById('g-fonction'));
       if (gCompany.remindOnce()) return;
       gBtn.disabled = true; gBtn.textContent = 'Un instant';
-      send(GUIDE_ENDPOINT, collect(gForm, { source: location.pathname + '#guide', guide: 'votre-crm-vous-ment' }), 'guide')
+      send(GUIDE_ENDPOINT, collect(gForm, { source: location.pathname + '#guide', guide: 'ou-l-ia-rapporte' }), 'guide')
         .then(function () { swap(gForm, document.getElementById('guide-done')); });
     });
   }
@@ -441,4 +459,16 @@
         .then(function () { swap(cForm, document.getElementById('contact-done')); });
     });
   }
+
+  /* ---- Exposé pour les pages qui ont leur propre formulaire (pré-diagnostic) ---- */
+  window.Skopo = {
+    attachCompanySearch: attachCompanySearch,
+    attachEmailHint: attachEmailHint,
+    collect: collect,
+    send: send,
+    swap: swap,
+    isEmail: isEmail,
+    latestCA: latestCA,
+    PREDIAG_ENDPOINT: PREDIAG_ENDPOINT
+  };
 })();

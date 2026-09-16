@@ -985,3 +985,183 @@
     padding: 3px 7px; opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 5;
   }
   .a-remplir:hover::after { opacity: 1; }
+
+  /* ========== Pivot cadrage + déploiement (branche pivot-cadrage-ia) ========== */
+
+  /* Quatre cartes d'offre au lieu de trois */
+  .cards--4 { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cards--4 .card { padding: 30px 26px; }
+  .cards--4 .card h3 { font-size: 22px; }
+  .cards--4 .card p { font-size: 16px; }
+  .cards--4 .card-points { font-size: 14.5px; }
+
+  /* Les trois semaines de cadrage, dépliables sous la méthode */
+  .cadrage-detail { margin-top: 40px; border-top: 1px solid var(--line-strong); }
+  .cadrage-detail summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 0;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .cadrage-detail summary::-webkit-details-marker { display: none; }
+  .cadrage-detail summary::after {
+    content: '';
+    margin-left: auto;
+    width: 9px; height: 9px;
+    border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted);
+    transform: rotate(45deg);
+    transition: transform .25s ease;
+  }
+  .cadrage-detail[open] summary::after { transform: rotate(-135deg); }
+  .cadrage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 6px 0 30px; }
+  .cadrage-week { background: var(--card); padding: 28px 26px; display: flex; flex-direction: column; gap: 10px; }
+  .cadrage-when { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .cadrage-week h4 { margin: 0 0 6px; font-size: 20px; font-weight: 600; letter-spacing: -.015em; }
+  .cadrage-week p { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--text-3); }
+  .cadrage-week strong { color: var(--ink); font-weight: 500; }
+
+  /* Section pré-diagnostic sur l'accueil */
+  .prediag { background: var(--ink); color: #f4f1eb; }
+  .prediag-inner {
+    padding-top: 96px;
+    padding-bottom: 96px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .85fr);
+    gap: 80px;
+    align-items: start;
+  }
+  .prediag .kicker { color: var(--accent-light); }
+  .prediag-content { display: flex; flex-direction: column; gap: 22px; }
+  .prediag-content h2 {
+    margin: 0;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.12;
+    font-weight: 600;
+    letter-spacing: -.03em;
+    text-wrap: pretty;
+    max-width: 560px;
+  }
+  .prediag-lead { margin: 0; font-size: 19px; line-height: 1.55; color: rgba(244, 241, 235, .7); max-width: 520px; }
+  .prediag .guide-points li { color: rgba(244, 241, 235, .7); }
+  .prediag .guide-points strong { color: #f4f1eb; }
+  .prediag .guide-points .dot { background: var(--accent-light); }
+  .prediag-card { background: var(--card); color: var(--ink); padding: 36px 34px; display: flex; flex-direction: column; gap: 22px; }
+  .prediag-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .prediag-steps li { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-top: 1px solid var(--line-md); font-size: 16px; color: var(--ink-soft); }
+  .prediag-steps li:last-child { border-bottom: 1px solid var(--line-md); }
+  .prediag-num {
+    flex: none;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* Page pré-diagnostic */
+  .pd-interne { display: flex; align-items: center; gap: 10px; margin: 16px 0 0; font-family: var(--mono); font-size: 12.5px; color: var(--accent-deep); }
+  .pd-interne[hidden] { display: none; }
+  .pd-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+    gap: 64px;
+    align-items: start;
+    padding-top: 44px;
+    padding-bottom: 96px;
+  }
+  .pd-form { background: var(--card); padding: 36px 34px; display: flex; flex-direction: column; gap: 26px; }
+  .pd-form[hidden], .pd-result[hidden], .pd-aside[hidden], .pd-step[hidden] { display: none; }
+  .pd-progress { list-style: none; margin: 0; padding: 0 0 22px; display: flex; gap: 28px; border-bottom: 1px solid var(--line-md); flex-wrap: wrap; }
+  .pd-progress li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+  .pd-progress li span {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    font-family: var(--mono); font-size: 11.5px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+  }
+  .pd-progress li.is-active { color: var(--ink); font-weight: 500; }
+  .pd-progress li.is-active span { background: var(--accent); border-color: var(--accent); color: var(--cream); }
+  .pd-progress li.is-done span { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+  .pd-step { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .pd-legend { padding: 0; font-size: 22px; font-weight: 600; letter-spacing: -.02em; margin-bottom: 4px; }
+  .pd-label { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .pd-label .opt, .field label .opt { text-transform: none; letter-spacing: 0; color: var(--faint); margin-left: 6px; font-family: var(--sans); font-size: 12.5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
+  .chip { position: relative; display: inline-flex; }
+  .chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .chip span {
+    display: inline-block;
+    padding: 9px 15px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--bg);
+    font-size: 15px;
+    line-height: 1.3;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color .2s ease, background .2s ease, color .2s ease;
+  }
+  .chip span em { font-style: normal; color: var(--muted); font-size: 13px; }
+  .chip:hover span { border-color: var(--accent-light); }
+  .chip.is-on span { background: var(--accent); border-color: var(--accent); color: var(--cream); }
+  .chip.is-on span em { color: rgba(251, 248, 243, .75); }
+  .chip input:focus-visible + span { outline: 2px solid var(--accent-light); outline-offset: 2px; }
+  .pd-free {
+    margin-top: 10px;
+    width: 100%;
+    border: none; border-bottom: 1px solid rgba(34, 31, 27, .22); border-radius: 0;
+    background: transparent; padding: 10px 0;
+    font-size: 15.5px; font-family: var(--sans); color: var(--ink); outline: none;
+  }
+  .pd-free::placeholder { color: var(--faint); }
+  .pd-free:focus { border-bottom-color: var(--accent); }
+  .pd-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-top: 6px; }
+  .pd-actions .btn[disabled] { opacity: .6; cursor: progress; }
+
+  .pd-aside { display: flex; flex-direction: column; gap: 28px; padding-top: 8px; }
+  .pd-aside-block { display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 1px solid var(--line-strong); }
+  .pd-aside-block p { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--text-3); }
+  .pd-aside-block a { text-decoration: underline; text-underline-offset: 3px; }
+
+  .pd-result { grid-column: 1 / -1; max-width: 820px; display: flex; flex-direction: column; gap: 22px; }
+  .pd-result h2 { margin: 0; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.12; font-weight: 600; letter-spacing: -.03em; text-wrap: pretty; }
+  .pd-result-lead { margin: 0; font-size: 18px; line-height: 1.55; color: var(--text-3); }
+  .pd-block { background: var(--card); padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .pd-block-kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .pd-block p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-soft); }
+  .pd-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .pd-list li { padding: 11px 0; border-top: 1px solid var(--line-md); font-size: 16px; line-height: 1.5; color: var(--text-2); }
+  .pd-list li:first-child { border-top: none; padding-top: 0; }
+  .pd-list strong { color: var(--ink); font-weight: 500; }
+  .pd-block--promise { background: var(--ink); color: #f4f1eb; }
+  .pd-block--promise .pd-block-kicker { color: var(--accent-light); }
+  .pd-block--promise p { color: rgba(244, 241, 235, .82); }
+  .pd-next { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; padding-top: 10px; }
+
+  @media (max-width: 1100px) {
+    .cards--4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 960px) {
+    .prediag-inner, .pd-wrap { grid-template-columns: 1fr; gap: 48px; }
+    .prediag-inner { padding-top: 76px; padding-bottom: 76px; }
+    .cadrage-grid { grid-template-columns: 1fr; }
+    .pd-aside { display: none; }
+  }
+  @media (max-width: 600px) {
+    .cards--4 { grid-template-columns: 1fr; }
+    .prediag-inner { padding-top: 60px; padding-bottom: 60px; }
+    .prediag-card, .pd-form, .pd-block { padding: 26px 20px; }
+    .pd-wrap { padding-top: 28px; padding-bottom: 60px; }
+    .pd-progress { gap: 14px; }
+    .pd-progress li { font-size: 13px; }
+    .pd-actions .btn { flex: 1 1 100%; text-align: center; }
+    .chip span { font-size: 14px; padding: 8px 13px; }
+  }

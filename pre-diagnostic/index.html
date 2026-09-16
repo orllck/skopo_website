@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
+<title>Pré-diagnostic : à quoi ressemblerait votre cadrage | Skopo</title>
+<meta name="description" content="Deux minutes pour décrire votre PME, vos services, vos outils et là où le temps se perd. Vous voyez à quoi ressemblerait votre cadrage, on arrive préparés au premier échange.">
+<link rel="canonical" href="https://skopo.fr/pre-diagnostic/">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Skopo">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://skopo.fr/pre-diagnostic/">
+<meta property="og:title" content="Deux minutes pour voir à quoi ressemblerait votre cadrage.">
+<meta property="og:description" content="Votre entreprise, vos services, vos outils, où le temps se perd. À la fin, votre projection de cadrage. Pas un devis, un aperçu.">
+<meta property="og:image" content="https://skopo.fr/og-skopo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pré-diagnostic Skopo">
+<meta name="twitter:description" content="Deux minutes pour voir à quoi ressemblerait votre cadrage.">
+<meta name="twitter:image" content="https://skopo.fr/og-skopo.png">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#efede7">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://skopo.fr/" },
+    { "@type": "ListItem", "position": 2, "name": "Pré-diagnostic", "item": "https://skopo.fr/pre-diagnostic/" }
+  ]
+}
+</script>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-tight-600-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-tight-400-latin.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/skopo.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="../" class="brand" aria-label="Skopo, accueil">
+        <span class="brand-name">Skopo</span>
+        <span class="brand-dot"></span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="../#offre">Ce qu'on déploie</a>
+        <a href="../#methode">Méthode</a>
+        <a href="../#duo">Le duo</a>
+        <a href="../#guide">Le guide</a>
+        <a href="../#faq">FAQ</a>
+      </nav>
+      <a href="../#rdv" class="nav-cta">Réserver un appel</a>
+    </div>
+  </header>
+
+  <section class="container doc-head">
+    <nav class="fil" aria-label="Fil d'Ariane">
+      <a href="../">Accueil</a><span aria-hidden="true">›</span>Pré-diagnostic
+    </nav>
+    <h1>Deux minutes pour voir à quoi ressemblerait votre cadrage.</h1>
+    <p class="doc-chapo">Votre entreprise, vos services, vos outils, et là où le temps se perd aujourd'hui. À la fin, vous voyez quels services on irait voir, quels flux on tracerait en premier, et quels outils on regarderait. Pas un devis&nbsp;: un aperçu, qu'on confirme ensemble en trente minutes.</p>
+    <p class="pd-interne" id="pd-interne" hidden><span class="dot"></span>Saisie interne&nbsp;: cette fiche sera marquée comme remplie par l'équipe Skopo.</p>
+  </section>
+
+  <section class="container pd-wrap">
+
+    <!-- TODO: renseigner PREDIAG_ENDPOINT dans ../assets/skopo.js (webhook n8n).
+         Tant qu'il est vide, la fiche et le score sont seulement écrits dans la console. -->
+    <form class="pd-form" id="prediag-form" method="post" action="#" novalidate>
+
+      <ol class="pd-progress" aria-label="Progression">
+        <li class="is-active" data-step-dot="1"><span>1</span>Votre entreprise</li>
+        <li data-step-dot="2"><span>2</span>Votre organisation</li>
+        <li data-step-dot="3"><span>3</span>Votre projection</li>
+      </ol>
+
+      <!-- ============ Écran 1 : l'entreprise ============ -->
+      <fieldset class="pd-step" data-step="1">
+        <legend class="pd-legend">Votre entreprise</legend>
+
+        <div class="field field--company" data-company-search>
+          <label for="p-entreprise">Votre entreprise</label>
+          <input id="p-entreprise" name="entreprise" type="text" placeholder="Commencez à taper, on la retrouve" autocomplete="organization" required aria-autocomplete="list" aria-expanded="false">
+        </div>
+
+        <div class="field">
+          <label for="p-effectif">Effectif <span class="opt" id="p-effectif-hint"></span></label>
+          <div class="select-wrap">
+            <select id="p-effectif" name="effectif_declare" required>
+              <option value="" disabled selected>Choisir</option>
+              <option value="moins-20">Moins de 20 personnes</option>
+              <option value="20-49">20 à 49</option>
+              <option value="50-99">50 à 99</option>
+              <option value="100-199">100 à 199</option>
+              <option value="200-plus">200 et plus</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-ca">Chiffre d'affaires annuel <span class="opt" id="p-ca-hint"></span></label>
+          <div class="select-wrap">
+            <select id="p-ca" name="ca_declare">
+              <option value="" disabled selected>Choisir</option>
+              <option value="moins-2">Moins de 2 M€</option>
+              <option value="2-5">2 à 5 M€</option>
+              <option value="5-10">5 à 10 M€</option>
+              <option value="10-20">10 à 20 M€</option>
+              <option value="20-plus">Plus de 20 M€</option>
+              <option value="nsp">Je préfère ne pas dire</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-fonction">Votre rôle</label>
+          <div class="select-wrap">
+            <select id="p-fonction" name="fonction" required>
+              <option value="" disabled selected>Choisir</option>
+              <option value="dirigeant">Dirigeant · DG</option>
+              <option value="daf">DAF · finance</option>
+              <option value="coo-ops">COO · directeur des opérations</option>
+              <option value="direction-commerciale">Direction commerciale</option>
+              <option value="it">IT · DSI</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-email">Email professionnel</label>
+          <input id="p-email" name="email" type="email" placeholder="vous@entreprise.fr" autocomplete="email" inputmode="email" required>
+          <span class="field-hint" id="p-email-hint" hidden>De préférence votre adresse professionnelle, c'est elle qui recevra la projection et le guide.</span>
+        </div>
+
+        <div class="pd-actions">
+          <button type="button" class="btn" data-next>Continuer</button>
+          <span class="rdv-cta-note">Écran 1 sur 2</span>
+        </div>
+      </fieldset>
+
+      <!-- ============ Écran 2 : l'organisation ============ -->
+      <fieldset class="pd-step" data-step="2" hidden>
+        <legend class="pd-legend">Votre organisation</legend>
+
+        <div class="field">
+          <span class="pd-label">Vos services <span class="opt">Cochez tout ce qui existe chez vous</span></span>
+          <div class="chips" data-group="services">
+            <label class="chip"><input type="checkbox" name="services" value="commerce"><span>Commerce</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="adv"><span>ADV et facturation</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="finance"><span>Finance et compta</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="operations"><span>Opérations et production</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="support"><span>Support client</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="rh"><span>RH</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="marketing"><span>Marketing</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="it"><span>IT</span></label>
+            <label class="chip"><input type="checkbox" name="services" value="direction"><span>Direction</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-sites">Nombre de sites ou d'établissements</label>
+          <div class="select-wrap">
+            <select id="p-sites" name="sites">
+              <option value="" disabled selected>Choisir</option>
+              <option value="1">Un seul</option>
+              <option value="2-3">2 à 3</option>
+              <option value="4-plus">Plus de 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="pd-label">Vos outils <span class="opt">Par famille, les noms courants entre parenthèses</span></span>
+          <div class="chips" data-group="outils">
+            <label class="chip"><input type="checkbox" name="outils" value="crm"><span>CRM <em>(HubSpot, Pipedrive, Salesforce, Zoho)</em></span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="facturation"><span>Facturation et compta <em>(Pennylane, Sage, Cegid, Odoo)</em></span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="erp"><span>ERP ou logiciel métier</span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="support"><span>Support client <em>(Zendesk, Freshdesk)</em></span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="bureautique"><span>Bureautique <em>(Microsoft 365, Google Workspace)</em></span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="documents"><span>Stockage documentaire <em>(Drive, SharePoint, Dropbox)</em></span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="rh"><span>Outil RH ou paie</span></label>
+            <label class="chip"><input type="checkbox" name="outils" value="tableurs"><span>Tableurs partagés comme outil de gestion</span></label>
+          </div>
+          <input class="pd-free" type="text" name="outils_autres" placeholder="D'autres outils importants ? Nommez-les ici (facultatif)">
+        </div>
+
+        <div class="field">
+          <span class="pd-label">Où le temps se perd aujourd'hui <span class="opt">Ce que vous voyez, sans chercher à être exhaustif</span></span>
+          <div class="chips" data-group="pertes">
+            <label class="chip"><input type="checkbox" name="pertes" value="ressaisie"><span>Ressaisie entre outils</span></label>
+            <label class="chip"><input type="checkbox" name="pertes" value="entrantes"><span>Demandes entrantes triées à la main</span></label>
+            <label class="chip"><input type="checkbox" name="pertes" value="documents"><span>Documents relus un par un</span></label>
+            <label class="chip"><input type="checkbox" name="pertes" value="reporting"><span>Reporting recollé à la main</span></label>
+            <label class="chip"><input type="checkbox" name="pertes" value="relances"><span>Relances qui dépendent de la mémoire</span></label>
+            <label class="chip"><input type="checkbox" name="pertes" value="information"><span>Information introuvable, cherchée dans plusieurs outils</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="pd-label">Vous avez déjà testé l'IA ?</span>
+          <div class="chips chips--radio" data-group="maturite">
+            <label class="chip"><input type="radio" name="maturite" value="non"><span>Non</span></label>
+            <label class="chip"><input type="radio" name="maturite" value="quelques-personnes"><span>Quelques personnes, avec ChatGPT ou équivalent</span></label>
+            <label class="chip"><input type="radio" name="maturite" value="projet-abandonne"><span>Un projet lancé qui n'a pas tenu</span></label>
+            <label class="chip"><input type="radio" name="maturite" value="en-production"><span>Un outil en production</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="pd-label">Quelqu'un porte le sujet en interne ?</span>
+          <div class="chips chips--radio" data-group="porteur">
+            <label class="chip"><input type="radio" name="porteur" value="oui-temps"><span>Oui, avec du temps</span></label>
+            <label class="chip"><input type="radio" name="porteur" value="oui-deborde"><span>Oui, mais débordé</span></label>
+            <label class="chip"><input type="radio" name="porteur" value="non"><span>Non</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="pd-label">Horizon</span>
+          <div class="chips chips--radio" data-group="horizon">
+            <label class="chip"><input type="radio" name="horizon" value="trimestre"><span>Ce trimestre</span></label>
+            <label class="chip"><input type="radio" name="horizon" value="six-mois"><span>Dans les six mois</span></label>
+            <label class="chip"><input type="radio" name="horizon" value="on-regarde"><span>On regarde</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-message">Un mot sur ce qui vous amène <span class="opt">facultatif</span></label>
+          <textarea id="p-message" name="message" placeholder="Ce qui a déclenché la réflexion, en deux lignes"></textarea>
+        </div>
+
+        <div class="pd-actions">
+          <button type="button" class="btn-outline" data-prev>Retour</button>
+          <button type="submit" class="btn" id="p-submit">Voir ma projection</button>
+        </div>
+        <p class="guide-consent">Vos réponses servent à préparer l'échange et à vous envoyer la projection et le guide par email. Pas de prospection automatisée. On complète la fiche publique de votre entreprise&nbsp;: <a href="../confidentialite/">le détail ici</a>.</p>
+      </fieldset>
+
+      <p class="guide-error" id="p-error" hidden role="alert"></p>
+    </form>
+
+    <!-- ============ Écran 3 : la projection, rendue par le JS ============ -->
+    <div class="pd-result" id="prediag-result" hidden>
+      <div class="kicker">Votre projection</div>
+      <h2 id="pr-title">À quoi ressemblerait votre cadrage</h2>
+      <p class="pd-result-lead" id="pr-lead"></p>
+
+      <div class="pd-block">
+        <div class="pd-block-kicker">Durée</div>
+        <p id="pr-duree"></p>
+      </div>
+
+      <div class="pd-block">
+        <div class="pd-block-kicker">Les services qu'on irait voir</div>
+        <ul class="pd-list" id="pr-services"></ul>
+      </div>
+
+      <div class="pd-block">
+        <div class="pd-block-kicker">Les flux qu'on tracerait en premier</div>
+        <ul class="pd-list" id="pr-flux"></ul>
+      </div>
+
+      <div class="pd-block">
+        <div class="pd-block-kicker">Les outils qu'on regarderait</div>
+        <ul class="pd-list" id="pr-outils"></ul>
+      </div>
+
+      <div class="pd-block">
+        <div class="pd-block-kicker">Ce qu'on a compris de votre situation</div>
+        <ul class="pd-list" id="pr-contexte"></ul>
+      </div>
+
+      <div class="pd-block pd-block--promise">
+        <div class="pd-block-kicker">Ce qu'on ne fera pas</div>
+        <p>Remplacer des gens. On enlève à vos équipes ce qui n'est pas leur métier, et le temps rendu leur revient. Le système prépare, la personne décide.</p>
+      </div>
+
+      <div class="pd-next">
+        <a href="#" class="btn a-remplir" data-todo="Lien Calendly">Trente minutes pour parcourir votre fiche</a>
+        <p class="guide-done-note">On vous envoie cette projection par email, avec le guide. Et si ce n'est pas un sujet pour nous, on vous le dit dès l'appel.</p>
+      </div>
+    </div>
+
+    <aside class="pd-aside" id="prediag-aside">
+      <div class="pd-aside-block">
+        <div class="kicker">Ce qu'on fait de vos réponses</div>
+        <p>Elles remplacent les vingt premières minutes de l'appel. On arrive en sachant combien de services on irait voir, quels outils on connecterait, et par quel flux commencer. Vous, vous ne racontez pas votre entreprise une troisième fois.</p>
+      </div>
+      <div class="pd-aside-block">
+        <div class="kicker">Ce que vous voyez à la fin</div>
+        <p>Une projection de votre cadrage&nbsp;: durée probable, services, flux, outils. Sans chiffre d'argent. Le prix se discute à l'oral, une fois qu'on a compris la taille du sujet.</p>
+      </div>
+      <div class="pd-aside-block">
+        <div class="kicker">Si vous préférez parler d'abord</div>
+        <p><a href="../#rdv">Réservez directement trente minutes</a>. On fera le tour des mêmes questions ensemble.</p>
+      </div>
+    </aside>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand">
+        <span class="brand-name">Skopo</span>
+        <span class="brand-dot"></span>
+      </div>
+      <span class="footer-tag">Cadrage · Déploiement · Adoption</span>
+      <span class="footer-links"><a href="../mentions-legales/">Mentions légales</a> · <a href="../confidentialite/">Confidentialité</a> · <a class="a-remplir" href="#" data-todo="URL de la page LinkedIn Skopo">LinkedIn</a></span>
+    </div>
+  </footer>
+
+<script src="../assets/skopo.js"></script>
+<script src="../assets/prediag.js"></script>
+</body>
+</html>
